@@ -29,7 +29,8 @@ public class CardDeliveryFormTest {
         form.$("[data-test-id=agreement] .checkbox__box").click();
         form.$("button .button__content").click();
         $("[data-test-id=notification]").shouldBe(visible, Duration.ofSeconds(15));
-        $("[data-test-id=notification] .notification__content").shouldHave(text(date.getValue()));
+        $("[data-test-id=notification] .notification__content")
+                .shouldHave(text(date.getValue()), text("Встреча успешно забронирована на "));
 
     }
 
@@ -69,7 +70,8 @@ public class CardDeliveryFormTest {
         form.$("button .button__content").click();
 
         $("[data-test-id=notification]").shouldBe(visible, Duration.ofSeconds(15));
-        $("[data-test-id=notification] .notification__content").shouldHave(text(verificationDate));
+        $("[data-test-id=notification] .notification__content")
+                .shouldHave(text(verificationDate), text("Встреча успешно забронирована на "));
 
     }
 }
