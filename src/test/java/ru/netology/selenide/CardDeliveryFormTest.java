@@ -51,14 +51,18 @@ public class CardDeliveryFormTest {
         form.$("[data-test-id=date] .icon-button").click();
         String currentDateValue = $(".calendar__name").getText();
 
-        while (!currentDateValue.contains(String.valueOf(year))) {
-            $(".calendar__arrow[data-step='12']").click();
-            currentDateValue = $(".calendar__name").getText();
+        for (int verifiedYear = 0; verifiedYear <= 3; verifiedYear++) {
+            while (!currentDateValue.contains(String.valueOf(year))) {
+                $(".calendar__arrow[data-step='12']").click();
+                currentDateValue = $(".calendar__name").getText();
+            }
         }
 
-        while (!currentDateValue.equalsIgnoreCase(monthOfYear)) {
-            $(".calendar__arrow[data-step='1']").click();
-            currentDateValue = $(".calendar__name").getText();
+        for (int verifiedMonth = 0; verifiedMonth <= 12; verifiedMonth++) {
+            while (!currentDateValue.equalsIgnoreCase(monthOfYear)) {
+                $(".calendar__arrow[data-step='1']").click();
+                currentDateValue = $(".calendar__name").getText();
+            }
         }
 
         $$(".calendar__layout .calendar__day").findBy(text(String.valueOf(day))).click();
